@@ -22,6 +22,8 @@ function! s:searchTarget() abort
             return v[1]
         endif
         
+        let currentLineNumber = currentLineNumber - 1
+        
     endwhile
 
     return ""
