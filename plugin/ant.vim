@@ -12,11 +12,11 @@ function! s:searchTarget() abort
 
         let currentLine = getline(currentLineNumber)
 
-        if currentLine ~=# '</target>'
+        if currentLine =~# '</target>'
             return ""
         endif
 
-        let v = matchlist(getline('.'),'^\t.*target name="\(.\{-\}\)".*$')
+        let v = matchlist(getline('.'),'^\s*.*target name="\(.\{-\}\)".*$')
 
         if len(v) > 0 
             return v[1]
@@ -46,7 +46,7 @@ function! ant#run() abort
    let choice = confirm("run target '" . targetName . "'", "&OK\n&Cancel", 2)
 
    if choice == 1
-        sil exe "make " . targetName
+        exe "make " . targetName
    endif
 
 endfunction
